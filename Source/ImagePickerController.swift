@@ -236,11 +236,6 @@ open class ImagePickerController: UIViewController {
       object: nil)
     
     NotificationCenter.default.addObserver(self,
-                                           selector: #selector(dismissIfNeeded),
-                                           name: NSNotification.Name(rawValue: ImageStack.Notifications.imageDidDrop),
-                                           object: nil)
-
-    NotificationCenter.default.addObserver(self,
       selector: #selector(didReloadAssets(_:)),
       name: NSNotification.Name(rawValue: ImageStack.Notifications.stackDidReload),
       object: nil)
@@ -280,13 +275,6 @@ open class ImagePickerController: UIViewController {
     bottomContainer.doneButton.setTitle(title, for: UIControl.State())
   }
   
-  @objc func dismissIfNeeded() {
-    // If only one image is requested and a push occures, automatically dismiss the ImagePicker
-    if imageLimit == 1 {
-      doneButtonDidPress()
-    }
-  }
-
   // MARK: - Helpers
 
   open override var prefersStatusBarHidden: Bool {
